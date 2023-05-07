@@ -6,10 +6,13 @@ services:
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: postgres://postgres:postgres_password@db:5432/elotus?sslmode=disable
+      JWT_SIGNING_KEY: SecretYouShouldHide
+      DATA_STORE_PATH: /tmp
+      JWT_TOKEN_EXPIRATION_HOUR: 2
     ports:
       - "8080:8080"
     volumes:
-      - ./upload:/app/upload
+      - ../tmp:/tmp
   db:
     image: postgres
     restart: always
